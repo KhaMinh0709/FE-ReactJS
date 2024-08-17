@@ -1,22 +1,24 @@
-import React, { useReducer, useState } from 'react';
+import React, { useReducer } from 'react';
 import './GameStyle.css';
 
+// Định nghĩa reducer cho trò chơi
 const gameReducer = (state, action) => {
     switch (action.type) {
-        case 'click':
+        case 'CLICK_CELL':
+            if (state.board[action.payload] || state.winner) return state;
+
             const newBoard = [...state.board];
-            newBoard[action.payload.index] = state.currentPlayer;
+            newBoard[action.payload] = state.currentPlayer;
 
             const newWinner = checkWinner(newBoard);
-
             return {
                 ...state,
                 board: newBoard,
                 winner: newWinner,
-                currentPlayer: newWinner ? state.currentPlayer : state.currentPlayer === 'X' ? 'O' : 'X',
+                currentPlayer: newWinner ? state.currentPlayer : (state.currentPlayer === 'X' ? 'O' : 'X'),
             };
 
-        case 'reset':
+        case 'RESET_GAME':
             return {
                 board: Array(9).fill(null),
                 currentPlayer: 'X',
@@ -28,6 +30,7 @@ const gameReducer = (state, action) => {
     }
 };
 
+// Kiểm tra người chiến thắng
 const checkWinner = (board) => {
     const winningCombinations = [
         [0, 1, 2],
@@ -55,20 +58,19 @@ const Game = () => {
         currentPlayer: 'X',
         winner: null,
     };
-
     const [state, dispatch] = useReducer(gameReducer, initState);
 
     const handleClick = (index) => {
-        if (state.board[index] || state.winner) return;
-
         dispatch({
-            type: 'click',
-            payload: { index }
+            type: 'CLICK_CELL',
+            payload: index,
         });
     };
 
     const resetGame = () => {
-        dispatch({ type: 'reset' });
+        dispatch({
+            type: 'RESET_GAME',
+        });
     };
 
     return (
@@ -85,7 +87,6 @@ const Game = () => {
         </div>
     );
 };
-
 
 const Board = ({ board, onClick }) => {
     return (
