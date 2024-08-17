@@ -1,0 +1,40 @@
+/* Container chung */
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: #f4f4f4; /* Nền sáng để tạo độ tương phản tốt hơn */
+}
+
+/* Styling chung cho hình ảnh */
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px; /* Góc bo tròn */
+  box-shadow: 20 10px 15px rgba(230, 15, 15, 0.845); /* Đổ bóng nhẹ */
+  margin-bottom: 1rem; /* Khoảng cách dưới hình ảnh */
+}
+
+/* Styling cho class .hello */
+.hello {
+  width: 80%; /* Chiều rộng theo tỷ lệ */
+  max-width: 600px; /* Chiều rộng tối đa cho màn hình lớn */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+}
+
+/* Styling cho class .vcl */
+.vcl {
+  width: 80%; /* Chiều rộng theo tỷ lệ */
+  max-width: 400px; /* Chiều rộng tối đa cho màn hình lớn */
+  margin: 0 auto; /* Căn giữa theo chiều ngang */
+}
+
+/* Styling cho h1 */
+h1 {
+  font-size: 1.5rem;
+  color: #333; /* Màu tối hơn để dễ đọc */
+  margin-bottom: 1rem;
+}
+
+
